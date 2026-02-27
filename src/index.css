@@ -1,0 +1,306 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-900: #ffffff;
+  --color-accent-cyan: #00c8d9;
+  --color-accent-purple: #6a1fe0;
+  --color-accent-pink: #e61d96;
+  --color-maroon: #5d0505;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ========== BASE STYLES ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-dark-900);
+  color: #361717;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== CUSTOM SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-cyan);
+  border-radius: 3px;
+}
+
+/* ========== CANVAS CONTAINER ========== */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ========== GLOWING TEXT ========== */
+.glow-text {
+  color: #361717;
+  text-shadow:
+    0 0 10px rgba(93, 5, 5, 0.15),
+    0 0 30px rgba(93, 5, 5, 0.08);
+}
+
+/* ========== GRADIENT TEXT ========== */
+.gradient-text {
+  background: linear-gradient(to right, #5d0505, #8b1a1a, #5d0505);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 4px rgba(93, 5, 5, 0.15));
+}
+
+/* ========== LAUNCH BUTTON ========== */
+.launch-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #2b1a00;
+  background: #c9a227;
+  border: none;
+  padding: 18px 60px;
+  border-radius: 0;
+  cursor: pointer;
+  overflow: visible;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 10;
+}
+
+.launch-btn::before {
+  content: none;
+}
+
+.launch-btn::after {
+  content: none;
+}
+
+.launch-btn:hover {
+  transform: scale(1.05);
+}
+
+.launch-btn:active {
+  transform: scale(0.98);
+}
+
+/* ========== COUNTDOWN STYLES ========== */
+.countdown-number {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(120px, 20vw, 280px);
+  line-height: 1;
+  background: linear-gradient(135deg, #ffffff, #e0e0e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  user-select: none;
+}
+
+.countdown-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(18px, 3vw, 32px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #361717;
+}
+
+/* ========== PROGRESS BAR ========== */
+.progress-track {
+  width: min(500px, 80vw);
+  height: 4px;
+  background: rgba(54, 23, 23, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #ffffff, #e0e0e0);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  transition: width 0.1s linear;
+}
+
+/* ========== SUBTLE ACCENT OVERLAY ========== */
+.hex-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(93, 5, 5, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(93, 5, 5, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(93, 5, 5, 0.05) 0%, transparent 55%);
+}
+
+/* ========== SCANLINE EFFECT ========== */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 4px);
+}
+
+/* ========== DATA STREAM ========== */
+.data-stream-char {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-accent-cyan);
+  opacity: 0.15;
+  animation: dataStream linear infinite;
+  user-select: none;
+}
+
+/* ========== ORBITAL RINGS ========== */
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(238, 255, 0, 0.3);
+}
+
+.orbital-ring-1 {
+  width: 300px;
+  height: 300px;
+  animation: orbitalSpin 20s linear infinite;
+}
+
+.orbital-ring-2 {
+  width: 450px;
+  height: 450px;
+  animation: orbitalSpin 30s linear infinite reverse;
+}
+
+.orbital-ring-3 {
+  width: 600px;
+  height: 600px;
+  animation: orbitalSpin 40s linear infinite;
+}
+
+/* ========== GLASS CARD ========== */
+.glass-card {
+  background: rgba(93, 5, 5, 0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(93, 5, 5, 0.1);
+  border-radius: 24px;
+}
+
+/* ========== NOISE OVERLAY ========== */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ========== KEYFRAMES ========== */
+@keyframes borderRotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes dataStream {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes orbitalSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .launch-btn {
+    padding: 14px 40px;
+    font-size: 1rem;
+  }
+
+  .progress-track {
+    width: 85vw;
+  }
+}
