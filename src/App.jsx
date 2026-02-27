@@ -26,7 +26,7 @@ function App() {
       <img
         src={mobitelLogo}
         alt="Mobitel Logo"
-        className="fixed -top-6 right-4 md:-top-3 md:right-6 w-[100px] h-[100px] md:w-56 md:h-56 object-contain opacity-90 z-20"
+        className="fixed -top-6 left-4 md:-top-3 md:left-6 w-[100px] h-[100px] md:w-56 md:h-56 object-contain opacity-90 z-20"
       />
 
       {/* Hexagonal Grid Overlay */}

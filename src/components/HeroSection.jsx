@@ -245,7 +245,7 @@ export default function HeroSection({ onLaunch }) {
             {/* Official Launch text */}
             <div
                 ref={badgeRef}
-                className="fade-away relative z-30 mb-6 md:translate-x-[19rem]"
+                className="fade-away relative z-30 mb-6 md:translate-x-[20rem]"
             >
                 <span className="text-lg md:text-xl font-medium tracking-widest uppercase text-[#361717]" style={{ fontFamily: 'var(--font-mono)' }}>
                     Official Launch of
@@ -256,7 +256,7 @@ export default function HeroSection({ onLaunch }) {
             <div className="fade-away relative z-20">
                 <h1
                     ref={titleRef}
-                    className="relative z-30 text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 md:translate-x-[19rem]"
+                    className="relative z-30 text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 md:translate-x-[20rem]"
                     style={{ fontFamily: 'var(--font-heading)', lineHeight: 1.1 }}
                 >
                     <span className="glow-text">{splitText('THE  DEPARTMENTS')}</span>
@@ -278,7 +278,7 @@ export default function HeroSection({ onLaunch }) {
             {/* Subtitle */}
             <p
                 ref={subtitleRef}
-                className="fade-away relative z-30 max-w-xl text-lg md:text-xl text-[#361717]/50 mb-8 leading-relaxed md:translate-x-[19rem]"
+                className="fade-away relative z-30 max-w-xl text-lg md:text-xl text-[#361717]/50 mb-8 leading-relaxed md:translate-x-[20rem]"
                 style={{ fontFamily: 'var(--font-body)' }}
             >
                 Experience the lauch of the Offical National History Museum Website
@@ -312,7 +312,7 @@ export default function HeroSection({ onLaunch }) {
             {/* Launch Button */}
             <button
                 ref={btnRef}
-                className="launch-btn relative z-30 md:ml-[19rem]"
+                className="launch-btn relative z-30 md:ml-[20rem]"
                 onClick={handleLaunchClick}
                 id="launch-button"
             >

@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
+import museumLogo from '../museum.Logo.svg'
 
 const COUNTDOWN_PHASES = [
     {
@@ -381,6 +382,11 @@ export default function CountdownSequence({ onComplete }) {
                     color={COUNTDOWN_PHASES[2].color}
                     onComplete={onComplete}
                 />
+                <img
+                    src={museumLogo}
+                    alt="National Museums Logo"
+                    className="fixed bottom-3 right-4 md:bottom-4 md:right-6 w-20 h-20 md:w-32 md:h-32 object-contain opacity-90 z-20 pointer-events-none"
+                />
             </div>
         )
     }
@@ -430,6 +436,12 @@ export default function CountdownSequence({ onComplete }) {
                     />
                 </div>
             </div>
+
+            <img
+                src={museumLogo}
+                alt="National Museums Logo"
+                className="fixed bottom-3 right-4 md:bottom-4 md:right-6 w-20 h-20 md:w-32 md:h-32 object-contain opacity-90 z-20 pointer-events-none"
+            />
         </div>
     )
 }
