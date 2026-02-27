@@ -253,7 +253,7 @@ export default function HeroSection({ onLaunch }) {
     return (
         <div
             ref={containerRef}
-            className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center"
+            className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center md:translate-x-20"
         >
             {/* Background decorative elements removed */}
 
@@ -286,7 +286,7 @@ export default function HeroSection({ onLaunch }) {
                     ref={museumLogoRef}
                     src={museumLogo}
                     alt="National Museums Logo"
-                    className="absolute top-[170%] -right-52 md:-right-[33rem] -translate-y-1/2 w-96 h-96 md:w-[50rem] md:h-[50rem] object-contain opacity-90"
+                    className="absolute top-1/2 -left-52 md:-left-[33rem] -translate-y-1/2 w-96 h-96 md:w-[50rem] md:h-[50rem] object-contain opacity-90"
                 />
             </div>
 
