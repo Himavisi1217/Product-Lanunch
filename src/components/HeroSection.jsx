@@ -138,7 +138,7 @@ export default function HeroSection({ onLaunch }) {
             className="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center"
         >
             {/* SLT-Mobitel Logo - Bottom Right */}
-            <div ref={sltLogoRef} className="fixed z-10 right-32 bottom-32 flex flex-col items-center gap-2">
+            <div ref={sltLogoRef} className="fixed z-10 right-22 bottom-32 flex flex-col items-center gap-2">
                 <span
                     className="text-xl md:text-2xl font-medium tracking-widest uppercase text-[#361717]"
                     style={{ fontFamily: 'var(--font-mono)' }}
