@@ -1,11 +1,13 @@
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import museumLogo from '../Museum Logo Transparent.svg'
+import sltMobitelLogo from '../MobitelLogo.svg'
 
 export default function HeroSection({ onLaunch }) {
     const containerRef = useRef()
     const titleRef = useRef()
     const museumLogoRef = useRef()
+    const sltLogoRef = useRef()
     const subtitleRef = useRef()
     const btnRef = useRef()
     const taglineRef = useRef()
@@ -16,11 +18,19 @@ export default function HeroSection({ onLaunch }) {
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({ delay: 0.3 })
 
+            // SLT-Mobitel logo entrance
+            tl.fromTo(
+                sltLogoRef.current,
+                { opacity: 0, x: 30 },
+                { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' }
+            )
+
             // Badge entrance
             tl.fromTo(
                 badgeRef.current,
                 { opacity: 0, y: -20, scale: 0.8 },
-                { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.7)' }
+                { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.7)' },
+                '-=0.5'
             )
 
             // Museum logo pop-in
@@ -100,9 +110,12 @@ export default function HeroSection({ onLaunch }) {
         if (btnText) btnText.textContent = 'LAUNCHING...'
         btn.style.pointerEvents = 'none'
 
-        const sltLogo = document.querySelector('img[alt="Mobitel Logo"]')
-        const logos = [museumLogoRef.current, sltLogo].filter(Boolean)
-        gsap.set(logos, { autoAlpha: 0 })
+        if (museumLogoRef.current) {
+            gsap.set(museumLogoRef.current, { autoAlpha: 0 })
+        }
+        if (sltLogoRef.current) {
+            gsap.set(sltLogoRef.current, { autoAlpha: 0 })
+        }
 
         onLaunch()
     }
@@ -124,7 +137,20 @@ export default function HeroSection({ onLaunch }) {
             ref={containerRef}
             className="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center"
         >
-            {/* Background decorative elements removed */}
+            {/* SLT-Mobitel Logo - Bottom Right */}
+            <div ref={sltLogoRef} className="fixed z-10 right-32 bottom-32 flex flex-col items-center gap-2">
+                <span
+                    className="text-xl md:text-2xl font-medium tracking-widest uppercase text-[#361717]"
+                    style={{ fontFamily: 'var(--font-mono)' }}
+                >
+                    Solution Provider
+                </span>
+                <img
+                    src={sltMobitelLogo}
+                    alt="SLT-Mobitel Logo"
+                    className="w-56 md:w-72 h-auto object-contain opacity-85"
+                />
+            </div>
 
             {/* Official Launch text */}
             <div
@@ -132,7 +158,7 @@ export default function HeroSection({ onLaunch }) {
                 className="fade-away relative z-30 mb-12 w-full flex justify-center text-center"
             >
                 <span className="text-xl md:text-2xl font-medium tracking-widest uppercase text-[#361717]" style={{ fontFamily: 'var(--font-mono)' }}>
-                    Official website of the 
+                    Official website of the
                 </span>
             </div>
 
@@ -151,7 +177,7 @@ export default function HeroSection({ onLaunch }) {
                     ref={museumLogoRef}
                     src={museumLogo}
                     alt="National Museums Logo"
-                    className="fixed z-10 -left-8 md:-left-10 top-[68%] -translate-y-1/2 w-80 h-80 md:w-[34rem] md:h-[34rem] object-contain opacity-100"
+                    className="fixed z-10 -left-6 -bottom-8 w-80 h-80 md:w-[30rem] md:h-[30rem] object-contain opacity-85"
                 />
             </div>
 
@@ -190,7 +216,7 @@ export default function HeroSection({ onLaunch }) {
             </br>
             <br>
             </br>
-            <br>  
+            <br>
             </br>
             <br></br>
             <br>
