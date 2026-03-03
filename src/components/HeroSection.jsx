@@ -149,18 +149,18 @@ export default function HeroSection({ onLaunch }) {
             {/* Solution Provider Text - Bottom Right */}
             <span
                 ref={solutionProviderRef}
-                className="fixed z-10 right-8 bottom-28 text-sm md:text-base font-medium tracking-widest uppercase text-[#361717]"
+                className="fixed z-10 right-12 bottom-28 text-xs md:text-sm font-medium tracking-widest uppercase text-[#361717]"
                 style={{ fontFamily: 'var(--font-mono)' }}
             >
                 Solution Provider
             </span>
 
             {/* SLT-Mobitel Logo - Bottom Right */}
-            <div ref={sltLogoRef} className="fixed z-10 right-8 bottom-7 flex flex-col items-center gap-2">
+            <div ref={sltLogoRef} className="fixed z-10 right-16 bottom-12 flex flex-col items-center gap-2">
                 <img
                     src={sltMobitelLogo}
                     alt="SLT-Mobitel Logo"
-                    className="w-36 md:w-44 h-auto object-contain opacity-85"
+                    className="w-36 md:w-40 h-auto object-contain opacity-85"
                 />
             </div>
 
@@ -189,7 +189,7 @@ export default function HeroSection({ onLaunch }) {
                     ref={museumLogoRef}
                     src={museumLogo}
                     alt="National Museums Logo"
-                    className="fixed z-10 -left-8 -bottom-6 w-40 h-40 md:w-[15rem] md:h-[15rem] object-contain opacity-85"
+                        className="fixed z-10 -left-4 -bottom-6 w-40 h-40 md:w-[15rem] md:h-[15rem] object-contain opacity-85"
                 />
             </div>
 
@@ -227,7 +227,6 @@ export default function HeroSection({ onLaunch }) {
 
             </br>
             <br>
-
             </br>
             {/* Launch Button */}
             <button
