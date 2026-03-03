@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
-import museumLogo from '../museum.Logo.svg'
+import museumLogo from '../Museum Logo Transparent.svg'
 
 export default function HeroSection({ onLaunch }) {
     const containerRef = useRef()
@@ -21,6 +21,14 @@ export default function HeroSection({ onLaunch }) {
                 badgeRef.current,
                 { opacity: 0, y: -20, scale: 0.8 },
                 { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.7)' }
+            )
+
+            // Museum logo pop-in
+            tl.fromTo(
+                museumLogoRef.current,
+                { opacity: 0, scale: 0.5 },
+                { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.7)' },
+                '-=0.4'
             )
 
             // Title letters stagger
@@ -87,140 +95,16 @@ export default function HeroSection({ onLaunch }) {
 
     const handleLaunchClick = () => {
         const btn = btnRef.current
-        const container = containerRef.current
         const btnText = btn.querySelector('.btn-text')
-        const btnIcon = btn.querySelector('.btn-icon')
 
-        // Create shockwave ring element
-        const shockwave = document.createElement('div')
-        shockwave.style.cssText = `
-            position: fixed; top: 50%; left: 50%; width: 20px; height: 20px;
-            border-radius: 50%; border: 2px solid rgba(0,240,255,0.8);
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 100;
-        `
-        document.body.appendChild(shockwave)
+        if (btnText) btnText.textContent = 'LAUNCHING...'
+        btn.style.pointerEvents = 'none'
 
-        // Create second shockwave
-        const shockwave2 = document.createElement('div')
-        shockwave2.style.cssText = `
-            position: fixed; top: 50%; left: 50%; width: 20px; height: 20px;
-            border-radius: 50%; border: 2px solid rgba(123,47,247,0.6);
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 100;
-        `
-        document.body.appendChild(shockwave2)
+        const sltLogo = document.querySelector('img[alt="Mobitel Logo"]')
+        const logos = [museumLogoRef.current, sltLogo].filter(Boolean)
+        gsap.set(logos, { autoAlpha: 0 })
 
-        // Create screen flash overlay
-        const flash = document.createElement('div')
-        flash.style.cssText = `
-            position: fixed; inset: 0; background: white;
-            opacity: 0; pointer-events: none; z-index: 200;
-        `
-        document.body.appendChild(flash)
-
-        const tl = gsap.timeline({
-            onComplete: () => {
-                shockwave.remove()
-                shockwave2.remove()
-                flash.remove()
-                onLaunch()
-            },
-        })
-
-        // Phase 1: Button reacts — squish down
-        tl.to(btn, {
-            scale: 0.85,
-            duration: 0.2,
-            ease: 'power3.in',
-        })
-
-        // Change button text to "LAUNCHING"
-        tl.call(() => {
-            if (btnText) btnText.textContent = 'LAUNCHING...'
-        })
-
-        // Button glows intensely
-        tl.to(btn, {
-            scale: 1,
-            duration: 0.4,
-            ease: 'power2.out',
-        })
-
-        // Phase 2: Fade out surrounding elements with a magnetic pull toward button
-        tl.to(
-            container.querySelectorAll('.fade-away'),
-            {
-                opacity: 0,
-                scale: 0.8,
-                y: 20,
-                filter: 'blur(8px)',
-                duration: 0.5,
-                stagger: 0.03,
-                ease: 'power3.in',
-            },
-            '-=0.2'
-        )
-
-        // Spin the icon
-        if (btnIcon) {
-            tl.to(btnIcon, {
-                rotation: 720,
-                scale: 0,
-                duration: 0.5,
-                ease: 'power4.in',
-            }, '-=0.5')
-        }
-
-        // Phase 3: Button collapses to a point
-        tl.to(btn, {
-            width: 16,
-            height: 16,
-            padding: 0,
-            fontSize: 0,
-            borderRadius: '50%',
-            duration: 0.4,
-            ease: 'power4.in',
-        })
-
-        // Phase 4: First shockwave ring blasts outward
-        tl.to(shockwave, {
-            width: '200vmax',
-            height: '200vmax',
-            opacity: 0,
-            borderWidth: 0.5,
-            duration: 0.8,
-            ease: 'power2.out',
-        })
-
-        // Second shockwave slightly delayed
-        tl.to(shockwave2, {
-            width: '200vmax',
-            height: '200vmax',
-            opacity: 0,
-            borderWidth: 0.5,
-            duration: 0.8,
-            ease: 'power2.out',
-        }, '-=0.6')
-
-        // Phase 5: Button explodes outward
-        tl.to(btn, {
-            scale: 80,
-            opacity: 0,
-            duration: 0.6,
-            ease: 'power4.in',
-        }, '-=0.5')
-
-        // Screen flash
-        tl.to(flash, {
-            opacity: 1,
-            duration: 0.15,
-            ease: 'power2.in',
-        }, '-=0.3')
-
-        tl.to(flash, {
-            opacity: 0,
-            duration: 0.4,
-            ease: 'power2.out',
-        })
+        onLaunch()
     }
 
     const splitText = (text) => {
@@ -245,43 +129,39 @@ export default function HeroSection({ onLaunch }) {
             {/* Official Launch text */}
             <div
                 ref={badgeRef}
-                className="fade-away relative z-30 mb-6 md:translate-x-[20rem]"
+                className="fade-away relative z-30 mb-12 w-full flex justify-center text-center"
             >
-                <span className="text-lg md:text-xl font-medium tracking-widest uppercase text-[#361717]" style={{ fontFamily: 'var(--font-mono)' }}>
-                    Official Launch of
+                <span className="text-xl md:text-2xl font-medium tracking-widest uppercase text-[#361717]" style={{ fontFamily: 'var(--font-mono)' }}>
+                    Official website of the 
                 </span>
             </div>
 
             {/* Main Title with Logo */}
-            <div className="fade-away relative z-20">
+            <div className="relative z-20">
                 <h1
                     ref={titleRef}
-                    className="relative z-30 text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 md:translate-x-[20rem]"
+                    className="fade-away relative z-30 text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-12"
                     style={{ fontFamily: 'var(--font-heading)', lineHeight: 1.1 }}
                 >
-                    <span className="glow-text">{splitText('THE  DEPARTMENTS')}</span>
+                    <span className="glow-text">{splitText('DEPARTMENT OF')}</span>
                     <br />
-                    <span className="glow-text">
-                        {splitText('OF  NATIONAL  MUSEUMS')}
-                    </span>
-                    <br />
-                    <span className="glow-text">{splitText('WEBSITE')}</span>
+                    <span className="glow-text">{splitText('NATIONAL MUSEUMS')}</span>
                 </h1>
                 <img
                     ref={museumLogoRef}
                     src={museumLogo}
                     alt="National Museums Logo"
-                    className="absolute z-0 top-[65%] -left-44 md:-left-[31rem] -translate-y-1/2 w-[24rem] h-[24rem] md:w-[52rem] md:h-[52rem] object-contain opacity-100"
+                    className="fixed z-10 -left-8 md:-left-10 top-[68%] -translate-y-1/2 w-80 h-80 md:w-[34rem] md:h-[34rem] object-contain opacity-100"
                 />
             </div>
 
             {/* Subtitle */}
             <p
                 ref={subtitleRef}
-                className="fade-away relative z-30 max-w-xl text-lg md:text-xl text-[#361717]/50 mb-8 leading-relaxed md:translate-x-[20rem]"
+                className="fade-away relative z-30 max-w-xl text-lg md:text-xl text-[#361717]/50 mb-6 leading-relaxed"
                 style={{ fontFamily: 'var(--font-body)' }}
             >
-                Experience the lauch of the Offical National History Museum Website
+                Experience the launch of the Official National History Museum Website
             </p>
 
             {/* Feature pills */}
@@ -306,13 +186,19 @@ export default function HeroSection({ onLaunch }) {
                 Ready to witness greatness?
             </p> */}
             <br>
-                
-            </br>
 
+            </br>
+            <br>
+            </br>
+            <br>  
+            </br>
+            <br></br>
+            <br>
+            </br>
             {/* Launch Button */}
             <button
                 ref={btnRef}
-                className="launch-btn relative z-30 md:ml-[20rem]"
+                className="launch-btn relative z-30 mt-32"
                 onClick={handleLaunchClick}
                 id="launch-button"
             >

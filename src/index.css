@@ -294,6 +294,16 @@ body {
   }
 }
 
+@keyframes progressShimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
   .launch-btn {

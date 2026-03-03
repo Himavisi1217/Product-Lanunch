@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
-import museumLogo from '../museum.Logo.svg'
+import museumLogo from '../Museum Logo Transparent.svg'
 
 const COUNTDOWN_PHASES = [
     {
@@ -256,39 +256,40 @@ export default function CountdownSequence({ onComplete }) {
     const [progress, setProgress] = useState(0)
     const [showMorph, setShowMorph] = useState(false)
     const [isTransitioning, setIsTransitioning] = useState(false)
-    const progressIntervalRef = useRef(null)
+    const progressTweenRef = useRef(null)
 
     const phase = COUNTDOWN_PHASES[currentPhase]
 
     // Handle the progress fill and phase transitions
     useEffect(() => {
-        if (isTransitioning) return
+        if (isTransitioning || showMorph) return
+        let morphTimeoutId
+        const progressState = { value: 0 }
 
-        const startTime = Date.now()
-        const duration = 2000
-
-        progressIntervalRef.current = setInterval(() => {
-            const elapsed = Date.now() - startTime
-            const pct = Math.min((elapsed / duration) * 100, 100)
-            setProgress(pct)
-
-            if (pct >= 100) {
-                clearInterval(progressIntervalRef.current)
-
+        progressTweenRef.current = gsap.to(progressState, {
+            value: 100,
+            duration: 2,
+            ease: 'none',
+            onUpdate: () => {
+                setProgress(progressState.value)
+            },
+            onComplete: () => {
                 if (currentPhase < COUNTDOWN_PHASES.length - 1) {
-                    // Start exit transition
                     setIsTransitioning(true)
                 } else {
-                    // Final phase complete — morph text
-                    setTimeout(() => setShowMorph(true), 300)
+                    morphTimeoutId = setTimeout(() => setShowMorph(true), 300)
                 }
-            }
-        }, 16)
+            },
+        })
 
         return () => {
-            clearInterval(progressIntervalRef.current)
+            if (progressTweenRef.current) {
+                progressTweenRef.current.kill()
+                progressTweenRef.current = null
+            }
+            if (morphTimeoutId) clearTimeout(morphTimeoutId)
         }
-    }, [currentPhase, isTransitioning])
+    }, [currentPhase, isTransitioning, showMorph])
 
     // Handle entrance animation when phase changes
     useEffect(() => {
@@ -385,7 +386,7 @@ export default function CountdownSequence({ onComplete }) {
                 <img
                     src={museumLogo}
                     alt="National Museums Logo"
-                    className="fixed bottom-3 right-4 md:bottom-4 md:right-6 w-20 h-20 md:w-32 md:h-32 object-contain opacity-90 z-20 pointer-events-none"
+                    className="fixed top-3 left-4 md:top-4 md:left-6 w-44 h-44 md:w-72 md:h-72 object-contain opacity-90 z-20 pointer-events-none"
                 />
             </div>
         )
@@ -432,15 +433,23 @@ export default function CountdownSequence({ onComplete }) {
                             width: `${progress}%`,
                             background: `linear-gradient(90deg, ${phase.color}, ${phase.accentColor})`,
                             boxShadow: `0 0 20px ${phase.color}80`,
+                            backgroundSize: '200% 100%',
+                            animation: 'progressShimmer 1.2s linear infinite',
                         }}
                     />
                 </div>
+                <span
+                    className="mt-3 text-sm md:text-base font-semibold tracking-wide"
+                    style={{ fontFamily: 'var(--font-mono)', color: '#361717' }}
+                >
+                    {Math.round(progress)}%
+                </span>
             </div>
 
             <img
                 src={museumLogo}
                 alt="National Museums Logo"
-                className="fixed bottom-3 right-4 md:bottom-4 md:right-6 w-20 h-20 md:w-32 md:h-32 object-contain opacity-90 z-20 pointer-events-none"
+                className="fixed top-3 left-4 md:top-4 md:left-6 w-44 h-44 md:w-72 md:h-72 object-contain opacity-90 z-20 pointer-events-none"
             />
         </div>
     )
