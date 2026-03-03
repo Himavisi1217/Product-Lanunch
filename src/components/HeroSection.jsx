@@ -144,30 +144,30 @@ export default function HeroSection({ onLaunch }) {
     return (
         <div
             ref={containerRef}
-            className="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center"
+            className="relative z-20 flex flex-col items-center justify-center h-full px-6 pb-52 text-center"
         >
             {/* Solution Provider Text - Bottom Right */}
             <span
                 ref={solutionProviderRef}
-                className="fixed z-10 right-8 bottom-36 text-base md:text-lg font-medium tracking-widest uppercase text-[#361717]"
+                className="fixed z-10 right-8 bottom-28 text-sm md:text-base font-medium tracking-widest uppercase text-[#361717]"
                 style={{ fontFamily: 'var(--font-mono)' }}
             >
                 Solution Provider
             </span>
 
             {/* SLT-Mobitel Logo - Bottom Right */}
-            <div ref={sltLogoRef} className="fixed z-10 right-8 bottom-14 flex flex-col items-center gap-2">
+            <div ref={sltLogoRef} className="fixed z-10 right-8 bottom-7 flex flex-col items-center gap-2">
                 <img
                     src={sltMobitelLogo}
                     alt="SLT-Mobitel Logo"
-                    className="w-48 md:w-60 h-auto object-contain opacity-85"
+                    className="w-36 md:w-44 h-auto object-contain opacity-85"
                 />
             </div>
 
             {/* Official Launch text */}
             <div
                 ref={badgeRef}
-                className="fade-away relative z-30 mb-12 w-full flex justify-center text-center"
+                className="fade-away relative z-30 -mt-64 mb-12 w-full flex justify-center text-center"
             >
                 <span className="text-xl md:text-2xl font-medium tracking-widest uppercase text-[#361717]" style={{ fontFamily: 'var(--font-mono)' }}>
                     Official website of the
@@ -189,14 +189,14 @@ export default function HeroSection({ onLaunch }) {
                     ref={museumLogoRef}
                     src={museumLogo}
                     alt="National Museums Logo"
-                    className="fixed z-10 -left-16 -bottom-10 w-64 h-64 md:w-[24rem] md:h-[24rem] object-contain opacity-85"
+                    className="fixed z-10 -left-8 -bottom-6 w-40 h-40 md:w-[15rem] md:h-[15rem] object-contain opacity-85"
                 />
             </div>
 
             {/* Subtitle */}
             <p
                 ref={subtitleRef}
-                className="fade-away relative z-30 max-w-xl text-lg md:text-xl text-[#361717]/75 mb-6 leading-relaxed"
+                className="fade-away relative z-30 max-w-xl text-lg md:text-xl text-[#361717]/100 mb-6 leading-relaxed"
                 style={{ fontFamily: 'var(--font-body)' }}
             >
                 Experience the launch of the Official National History Museum Website
@@ -227,13 +227,12 @@ export default function HeroSection({ onLaunch }) {
 
             </br>
             <br>
-            </br>
-            <br>
+
             </br>
             {/* Launch Button */}
             <button
                 ref={btnRef}
-                className="launch-btn relative z-30 mt-32"
+                className="launch-btn relative z-30 mt-4"
                 onClick={handleLaunchClick}
                 id="launch-button"
             >
