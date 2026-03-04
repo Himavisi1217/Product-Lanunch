@@ -391,6 +391,7 @@ export default function CountdownSequence({ onComplete }) {
         <div
             ref={containerRef}
             className="relative z-10 flex flex-col items-center justify-center h-full px-6"
+            style={{ background: 'none', backgroundColor: 'transparent' }}
         >
             <DataStreamBackground />
 
@@ -408,12 +409,7 @@ export default function CountdownSequence({ onComplete }) {
             <div ref={numberRef} key={`number-${currentPhase}`} className="relative mb-4">
                 <span
                     className="countdown-number"
-                    style={{
-                        background: `linear-gradient(135deg, ${phase.color}, ${phase.accentColor})`,
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                    }}
+                    style={{ color: phase.color }}
                 >
                     {phase.number}
                 </span>
@@ -424,13 +420,7 @@ export default function CountdownSequence({ onComplete }) {
                 <div className="progress-track">
                     <div
                         className="progress-fill"
-                        style={{
-                            width: `${progress}%`,
-                            background: `linear-gradient(90deg, ${phase.color}, ${phase.accentColor})`,
-                            boxShadow: `0 0 20px ${phase.color}80`,
-                            backgroundSize: '200% 100%',
-                            animation: 'progressShimmer 1.2s linear infinite',
-                        }}
+                        style={{ width: `${progress}%`, background: 'none', boxShadow: 'none' }}
                     />
                 </div>
 

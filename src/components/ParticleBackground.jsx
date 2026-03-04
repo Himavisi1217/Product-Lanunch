@@ -169,9 +169,9 @@ export default function ParticleBackground({ phase = 'idle' }) {
                 camera={{ position: [0, 0, 12], fov: 60 }}
                 dpr={[1, 1.5]}
                 gl={{ antialias: true, alpha: true }}
+                style={{ background: 'none' }}
             >
-                <color attach="background" args={['#ffffff']} />
-                <fog attach="fog" args={['#ffffff', 10, 30]} />
+                {/* Removed white background and fog to allow global background image to show */}
                 <ParticleField count={2500} phase={phase} />
                 {/* <NebulaSphere phase={phase} /> */}
                 {/* <FloatingRings phase={phase} /> */}

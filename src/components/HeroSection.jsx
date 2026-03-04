@@ -142,7 +142,7 @@ export default function HeroSection({ onLaunch }) {
     }
 
     return (
-        <section className="hero-movable-section" style={{ marginTop: '10rem' }}>
+        <section className="hero-movable-section" style={{ marginTop: '12rem' }}>
         <div
             ref={containerRef}
             className="relative z-20 flex flex-col items-center justify-center h-full px-6 pb-0 text-center"
@@ -150,14 +150,14 @@ export default function HeroSection({ onLaunch }) {
             {/* Solution Provider Text - Bottom Right */}
             <span
                 ref={solutionProviderRef}
-                className="fixed z-10 right-8 bottom-48 text-lg md:text-2xl font-bold tracking-widest uppercase text-[#361717]"
-                style={{ fontFamily: 'var(--font-mono)' }}
+                className="fixed z-10 right-12 bottom-32 text-xs md:text-sm tracking-widest uppercase text-[#361717]"
+                style={{ fontFamily: 'var(--font-mono)', fontWeight: 400 }}
             >
                 Solution Provider
             </span>
 
             {/* SLT-Mobitel Logo - Bottom Right */}
-            <div ref={sltLogoRef} className="fixed z-10 right-16 bottom-16 flex flex-col items-center gap-2">
+            <div ref={sltLogoRef} className="fixed z-10 right-8 bottom-8 flex flex-col items-center gap-2">
                 <img
                     src={sltMobitelLogo}
                     alt="SLT-Mobitel Logo"
@@ -173,6 +173,8 @@ export default function HeroSection({ onLaunch }) {
                 <span className="text-xl md:text-2xl font-medium tracking-widest uppercase text-[#361717]" style={{ fontFamily: 'var(--font-mono)' }}>
                     Official website of the
                 </span>
+                <br />
+                <br />
             </div>
 
             {/* Main Title with Logo */}
@@ -190,7 +192,7 @@ export default function HeroSection({ onLaunch }) {
                     ref={museumLogoRef}
                     src={museumLogo}
                     alt="National Museums Logo"
-                        className="fixed z-10 -left-4 -bottom-6 w-56 h-56 md:w-[22rem] md:h-[22rem] object-contain opacity-85"
+                        className="fixed z-10 -left-12 -bottom-10 w-56 h-56 md:w-[22rem] md:h-[22rem] object-contain opacity-85"
                 />
             </div>
 

@@ -47,11 +47,7 @@ function App() {
       {/* Hexagonal Grid Overlay */}
       <div className="hex-grid" />
 
-      {/* Noise Overlay */}
-      <div className="noise-overlay" />
 
-      {/* Scanline Effect */}
-      <div className="scanline" />
 
       {/* Main Content */}
       {phase === 'idle' && <HeroSection onLaunch={handleLaunch} />}
